@@ -1,0 +1,29 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "Alpine Nix",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			// Update ALPINE_VERSION to pick an Alpine version: 3.11, 3.12, 3.13, 3.14
+			"ALPINE_VERSION": "3.14",
+			// Update NIX_VERSION and NIX_SHA256 to change Nix versions, see https://nixos.org/download.html for the 
+			// latest version.
+			"NIX_VERSION": "2.3.15",
+			// See https://releases.nixos.org/?prefix=nix/nix-${NIX_VERSION} to find this hash. 
+			"NIX_SHA256": "aae346f0ee447efa042c38e320aee0368e3c6c7fa331d76f708bbe8539f694fa",
+			// This must be the same as your containerUser.
+			"USERNAME": "vscode",
+		}
+	},
+	"settings": {},
+	"extensions": [
+		"golang.go"
+	],
+	// https://opensource.com/article/21/7/vs-code-remote-containers-podman
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+	"workspaceFolder": "/workspace",
+	"runArgs": [
+		"--userns=keep-id"
+	],
+	"containerUser": "vscode"
+}
